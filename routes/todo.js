@@ -2,7 +2,7 @@ let express = require('express');
 let router = express.Router();
 let bodyParser = require('body-parser');
 let mongoose = require('mongoose');
-let config = require('config');
+let config = require('../config');
 
 //Connect to the database
 mongoose.connect(config.databaseUri, { useNewUrlParser: true });
@@ -26,7 +26,7 @@ router.get('/', function (req, res) {
 router.post('/', urlencodedParser, function (req, res) {
     Todo(req.body).save(function (err, data) {
         if(err) throw err;
-        res.redirect('/todo');
+        res.redirect('/');
     });
 });
 
